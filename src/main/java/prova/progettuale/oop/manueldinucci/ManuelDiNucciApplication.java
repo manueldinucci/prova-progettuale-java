@@ -22,12 +22,11 @@ public class ManuelDiNucciApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
-
-		//DOWNLOAD JSON
+ 	    //DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
 		if(args.length == 1)
 			url = args[0]; 
- 
+		
 		try {
 			URLConnection openConnection = new URL(url).openConnection();
 			openConnection.addRequestProperty("User Agent",
@@ -66,9 +65,9 @@ public class ManuelDiNucciApplication {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
-	}
+	} 
 
 	public static void download(String url, String fileName) throws Exception {
 		try (InputStream in = URI.create(url).toURL().openStream()){
