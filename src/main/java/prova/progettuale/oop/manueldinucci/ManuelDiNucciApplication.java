@@ -21,15 +21,17 @@ import org.json.simple.parser.ParseException;
 public class ManuelDiNucciApplication {
 
 	public static void main(String[] args) {
+		
 		//SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
  	    //DOWNLOAD JSON
-		String url = "https://www.dati.gov.it/api/3/action/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
-		if(args.length == 1)
-			url = args[0]; 
+		String url = "https://www.dati.gov.it/api/3/action"
+				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
+		/*if(args.length == 1)
+			url = args[0]; */  //STAVA AL JSON PARSE DI MANCINI
 		
 		try {
 			URLConnection openConnection = new URL(url).openConnection();
-			openConnection.addRequestProperty("User Agent",
+			openConnection.addRequestProperty("User-Agent",
 					"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
 			InputStream in = openConnection.getInputStream();
 
@@ -38,8 +40,8 @@ public class ManuelDiNucciApplication {
 			try {
 				InputStreamReader inR = new InputStreamReader(in); //Legge i byte e li trasforma in caratteri
 				BufferedReader buf = new BufferedReader(inR);
-
-				while ((line=buf.readLine()) != null) {
+				//Leggo una riga alla volta
+				while ((line=buf.readLine()) != null) { 
 					data += line;
 					System.out.println(line);
 				}
@@ -57,7 +59,7 @@ public class ManuelDiNucciApplication {
 					String urlD = (String)o1.get("url");
 					System.out.println(format + " | " + urlD);
 					if (format.equals("csv")) {
-						download(urlD,"t1.csv");
+						download(urlD,"dataset_ricette.csv");
 					}
 				}
 			}
