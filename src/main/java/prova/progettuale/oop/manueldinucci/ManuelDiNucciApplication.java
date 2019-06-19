@@ -26,8 +26,8 @@ public class ManuelDiNucciApplication {
 		//DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
 		if(args.length == 1)
-			url = args[0];
-
+			url = args[0]; 
+ 
 		try {
 			URLConnection openConnection = new URL(url).openConnection();
 			openConnection.addRequestProperty("User Agent",
