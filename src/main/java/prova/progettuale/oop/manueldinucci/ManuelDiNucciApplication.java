@@ -1,5 +1,7 @@
 package prova.progettuale.oop.manueldinucci; 
 
+import static org.hamcrest.CoreMatchers.containsString;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -98,16 +100,19 @@ public class ManuelDiNucciApplication {
 				String[] valori = riga.split(PUNTOVIRGOLA);
 				//System.out.println(valori.length);
 				records.add(Arrays.asList(valori));
-				//System.out.println(valori[2]);
-				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],valori[2]));
+				String sp = valori[2].replace(".", "");
+				//System.out.println(sp);
+				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],Integer.parseInt(sp)));
 			}
 			//METODO VISUALIZZA
-			System.out.println(v);
+			//System.out.println(v);
 			br.close();
 		} catch (IOException|NumberFormatException e) {
-			System.out.println("qua ci arrivo");
+			System.out.println("ERRORE");
 			e.printStackTrace();
-		} 
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
 
 	}
 

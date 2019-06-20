@@ -4,14 +4,14 @@ public class RicetteErogate_Data {
 
 	private int anno;
 	private String brancaSpecialistica;
-	private String numRicette;
+	private int numRicette;
 
 	/**
 	 * @param anno
 	 * @param brancaSpecialistica
 	 * @param numRicette
 	 */
-	public RicetteErogate_Data(int anno, String brancaSpecialistica, String numRicette) {
+	public RicetteErogate_Data(int anno, String brancaSpecialistica, int numRicette) {
 		this.anno = anno;
 		this.brancaSpecialistica = brancaSpecialistica;
 		this.numRicette = numRicette;
@@ -54,14 +54,14 @@ public class RicetteErogate_Data {
 	/**
 	 * @return the numRicette
 	 */
-	public String getNumRicette() {
+	public int getNumRicette() {
 		return numRicette;
 	}
 
 	/**
 	 * @param numRicette the numRicette to set
 	 */
-	public void setNumRicette(String numRicette) {
+	public void setNumRicette(int numRicette) {
 		this.numRicette = numRicette;
 	}
 
