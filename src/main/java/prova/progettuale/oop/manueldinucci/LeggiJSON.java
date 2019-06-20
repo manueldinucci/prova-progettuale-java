@@ -12,7 +12,7 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 
-public class LeggiJSON {
+/*public class LeggiJSON {
 	
 	public LeggiJSON() {
 	}
@@ -46,8 +46,8 @@ public class LeggiJSON {
 			JSONObject json2 = json.leggiJsonDaUrl("https://www.dati.gov.it/api/3/action/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8");
 			System.out.println(json2.toJSONString());
 		} catch (IOException | JSONException | ParseException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		
- */
-}
+
+} */

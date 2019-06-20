@@ -1,6 +1,7 @@
 package prova.progettuale.oop.manueldinucci; 
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,6 +10,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -58,8 +64,9 @@ public class ManuelDiNucciApplication {
 					String format = (String)o1.get("format");
 					String urlD = (String)o1.get("url");
 					System.out.println(format + " | " + urlD);
+					String file = "dataset_ricette.csv";
 					if (format.equals("csv")) {
-						download(urlD,"dataset_ricette.csv");
+						download(urlD,file);
 					}
 				}
 			}
@@ -67,13 +74,32 @@ public class ManuelDiNucciApplication {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 	} 
 
 	public static void download(String url, String fileName) throws Exception {
 		try (InputStream in = URI.create(url).toURL().openStream()){
 			Files.copy(in, Paths.get(fileName));
+		}
+		
+		//CSV CREATO
+		
+		//PARSE CSV
+		final String VIRGOLA = ","; //DIVENTA BLU NELLA CLASSE !!AGGIUNGI STATIC!!
+		List<List<String>> records = new ArrayList<>();
+		Vector<RicetteErogate_Data> v = new Vector<RicetteErogate_Data>();
+		try (BufferedReader br = new BufferedReader(new FileReader("dataset_ricette.csv"))){
+			String riga;
+			while ((riga = br.readLine()) != null) {
+				String[] valori = riga.split(VIRGOLA);
+				System.out.println(valori.length);
+				records.add(Arrays.asList(valori));
+				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],Double.parseDouble(valori[2])));
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
