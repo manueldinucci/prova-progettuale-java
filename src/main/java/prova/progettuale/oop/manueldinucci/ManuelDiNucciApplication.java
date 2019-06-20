@@ -23,18 +23,19 @@ import org.json.simple.parser.ParseException;
 //import org.springframework.boot.autoconfigure.SpringBootApplication; //Import iniziali
 
 
+
 //@SpringBootApplication //Commento iniziale
 public class ManuelDiNucciApplication {
 
 	public static void main(String[] args) {
-		
+
 		//SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
- 	    //DOWNLOAD JSON
+		//DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
 		/*if(args.length == 1)
 			url = args[0]; */  //STAVA AL JSON PARSE DI MANCINI
-		
+
 		try {
 			URLConnection openConnection = new URL(url).openConnection();
 			openConnection.addRequestProperty("User-Agent",
@@ -63,7 +64,7 @@ public class ManuelDiNucciApplication {
 					JSONObject o1 = (JSONObject)o;
 					String format = (String)o1.get("format");
 					String urlD = (String)o1.get("url");
-					System.out.println(format + " | " + urlD);
+					//System.out.println(format + " | " + urlD);
 					String file = "dataset_ricette.csv";
 					if (format.equals("csv")) {
 						download(urlD,file);
@@ -82,25 +83,32 @@ public class ManuelDiNucciApplication {
 		try (InputStream in = URI.create(url).toURL().openStream()){
 			Files.copy(in, Paths.get(fileName));
 		}
-		
+
 		//CSV CREATO
-		
+
 		//PARSE CSV
-		final String VIRGOLA = ","; //DIVENTA BLU NELLA CLASSE !!AGGIUNGI STATIC!!
+		final String PUNTOVIRGOLA = ";"; //DIVENTA BLU NELLA CLASSE !!AGGIUNGI STATIC!!
 		List<List<String>> records = new ArrayList<>();
 		Vector<RicetteErogate_Data> v = new Vector<RicetteErogate_Data>();
+
 		try (BufferedReader br = new BufferedReader(new FileReader("dataset_ricette.csv"))){
 			String riga;
+			br.readLine(); //IGNORA LA PRIMA RIGA
 			while ((riga = br.readLine()) != null) {
-				String[] valori = riga.split(VIRGOLA);
-				System.out.println(valori.length);
+				String[] valori = riga.split(PUNTOVIRGOLA);
+				//System.out.println(valori.length);
 				records.add(Arrays.asList(valori));
-				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],Double.parseDouble(valori[2])));
+				//System.out.println(valori[2]);
+				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],valori[2]));
 			}
+			//METODO VISUALIZZA
+			System.out.println(v);
 			br.close();
-		} catch (IOException e) {
+		} catch (IOException|NumberFormatException e) {
+			System.out.println("qua ci arrivo");
 			e.printStackTrace();
-		}
+		} 
+
 	}
 
 }

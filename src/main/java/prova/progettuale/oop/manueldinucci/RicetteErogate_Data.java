@@ -4,18 +4,24 @@ public class RicetteErogate_Data {
 
 	private int anno;
 	private String brancaSpecialistica;
-	private double numRicette;
+	private String numRicette;
 
 	/**
 	 * @param anno
 	 * @param brancaSpecialistica
 	 * @param numRicette
 	 */
-	public RicetteErogate_Data(int anno, String brancaSpecialistica, double numRicette) {
+	public RicetteErogate_Data(int anno, String brancaSpecialistica, String numRicette) {
 		this.anno = anno;
 		this.brancaSpecialistica = brancaSpecialistica;
 		this.numRicette = numRicette;
 	}
+
+	/**
+	 * @param anno
+	 * @param brancaSpecialistica
+	 * @param numRicette
+	 */
 
 	/**
 	 * @return the anno
@@ -48,21 +54,20 @@ public class RicetteErogate_Data {
 	/**
 	 * @return the numRicette
 	 */
-	public double getNumRicette() {
+	public String getNumRicette() {
 		return numRicette;
 	}
 
 	/**
 	 * @param numRicette the numRicette to set
 	 */
-	public void setNumRicette(double numRicette) {
+	public void setNumRicette(String numRicette) {
 		this.numRicette = numRicette;
 	}
 
 	@Override
 	public String toString() {
-		return "RicetteErogate_Data [anno=" + anno + ", brancaSpecialistica=" + brancaSpecialistica + ", numRicette="
-				+ numRicette + "]";
+		return anno + " " + brancaSpecialistica + " " + numRicette ;
 	}
 	
 
