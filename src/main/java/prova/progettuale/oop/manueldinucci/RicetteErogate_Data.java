@@ -5,7 +5,8 @@ public class RicetteErogate_Data {
 	private int anno;
 	private String brancaSpecialistica;
 	private int numRicette;
-
+	
+	public RicetteErogate_Data() {};
 	/**
 	 * @param anno
 	 * @param brancaSpecialistica
@@ -67,7 +68,9 @@ public class RicetteErogate_Data {
 
 	@Override
 	public String toString() {
-		return anno + " " + brancaSpecialistica + " " + numRicette ;
+		return "\n Anno: " + anno + " -- Branca specialistica: " +
+				brancaSpecialistica + " -- Numero di ricette: " +
+				numRicette;
 	}
 	
 

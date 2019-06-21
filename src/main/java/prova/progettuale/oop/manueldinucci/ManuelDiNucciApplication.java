@@ -1,7 +1,5 @@
 package prova.progettuale.oop.manueldinucci; 
 
-import static org.hamcrest.CoreMatchers.containsString;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,23 +13,27 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
+//import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
-//import org.springframework.boot.SpringApplication; //Import iniziali
-//import org.springframework.boot.autoconfigure.SpringBootApplication; //Import iniziali
+import org.springframework.boot.SpringApplication; //Import iniziali
+import org.springframework.boot.autoconfigure.SpringBootApplication; //Import iniziali
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import prova.progettuale.oop.manueldinucci.domain.DatiRicette;
+import prova.progettuale.oop.manueldinucci.services.DatiRicService;
 
 
 
-//@SpringBootApplication //Commento iniziale
+@SpringBootApplication //Commento iniziale
 public class ManuelDiNucciApplication {
 
 	public static void main(String[] args) {
-
-		//SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
+		SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
 		//DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
@@ -52,7 +54,7 @@ public class ManuelDiNucciApplication {
 				//Leggo una riga alla volta
 				while ((line=buf.readLine()) != null) { 
 					data += line;
-					System.out.println(line);
+					//System.out.println(line);
 				}
 			} finally {
 				in.close();
@@ -91,21 +93,24 @@ public class ManuelDiNucciApplication {
 		//PARSE CSV
 		final String PUNTOVIRGOLA = ";"; //DIVENTA BLU NELLA CLASSE !!AGGIUNGI STATIC!!
 		List<List<String>> records = new ArrayList<>();
-		Vector<RicetteErogate_Data> v = new Vector<RicetteErogate_Data>();
+		ArrayList<RicetteErogate_Data> v = new ArrayList<RicetteErogate_Data>();
 
 		try (BufferedReader br = new BufferedReader(new FileReader("dataset_ricette.csv"))){
 			String riga;
-			br.readLine(); //IGNORA LA PRIMA RIGA
+			//SALVA I DATI DELLA PRIMA RIGA A PARTE PER FUTURI SourceField (0,1,2)
+			String[] rigaIniziale = br.readLine().split(PUNTOVIRGOLA); 
+			System.out.println(rigaIniziale[1]);
 			while ((riga = br.readLine()) != null) {
 				String[] valori = riga.split(PUNTOVIRGOLA);
 				//System.out.println(valori.length);
 				records.add(Arrays.asList(valori));
-				String sp = valori[2].replace(".", "");
+				String valori2corretto = valori[2].replace(".", "");
 				//System.out.println(sp);
-				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],Integer.parseInt(sp)));
+				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],
+						Integer.parseInt(valori2corretto)));
 			}
 			//METODO VISUALIZZA
-			//System.out.println(v);
+			System.out.println(v);
 			br.close();
 		} catch (IOException|NumberFormatException e) {
 			System.out.println("ERRORE");
@@ -113,6 +118,7 @@ public class ManuelDiNucciApplication {
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
+		
 
 	}
 
