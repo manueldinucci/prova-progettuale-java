@@ -5,7 +5,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class DownloadCSV {
+public class ScaricaCSV1 {
 	/**
 	 * 
 	 * @param url

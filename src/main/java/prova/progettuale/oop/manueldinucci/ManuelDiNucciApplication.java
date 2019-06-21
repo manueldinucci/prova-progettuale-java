@@ -24,16 +24,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication; //Import in
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import prova.progettuale.oop.manueldinucci.domain.DatiRicette;
-import prova.progettuale.oop.manueldinucci.services.DatiRicService;
-
-
+import prova.progettuale.oop.manueldinucci.controllers.DatiRicController;
 
 @SpringBootApplication //Commento iniziale
 public class ManuelDiNucciApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
+		
 		//DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
@@ -93,7 +91,7 @@ public class ManuelDiNucciApplication {
 		//PARSE CSV
 		final String PUNTOVIRGOLA = ";"; //DIVENTA BLU NELLA CLASSE !!AGGIUNGI STATIC!!
 		List<List<String>> records = new ArrayList<>();
-		ArrayList<RicetteErogate_Data> v = new ArrayList<RicetteErogate_Data>();
+		ArrayList<Ricetta> v = new ArrayList<Ricetta>();
 
 		try (BufferedReader br = new BufferedReader(new FileReader("dataset_ricette.csv"))){
 			String riga;
@@ -106,11 +104,11 @@ public class ManuelDiNucciApplication {
 				records.add(Arrays.asList(valori));
 				String valori2corretto = valori[2].replace(".", "");
 				//System.out.println(sp);
-				v.add(new RicetteErogate_Data(Integer.parseInt(valori[0]),valori[1],
+				v.add(new Ricetta(Integer.parseInt(valori[0]),valori[1],
 						Integer.parseInt(valori2corretto)));
 			}
 			//METODO VISUALIZZA
-			System.out.println(v);
+			System.out.println(v.toString());
 			br.close();
 		} catch (IOException|NumberFormatException e) {
 			System.out.println("ERRORE");
@@ -118,8 +116,22 @@ public class ManuelDiNucciApplication {
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
-		
+	
+    	final String dati = v.toString();
+    	
+		/*@RestController 
+		class DatiRicController{
+			@RequestMapping("/")
+			public String hosta(String dati ) {
+				return "mo";
+			} 
+		} */
+    	//DatiRicController drc = new DatiRicController();
+    	//String out = (drc.hosta(dati));
 
-	}
+	
+
+
+}
 
 }
