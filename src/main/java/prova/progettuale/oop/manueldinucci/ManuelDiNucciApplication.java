@@ -2,12 +2,8 @@ package prova.progettuale.oop.manueldinucci;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.net.MalformedURLException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -24,7 +20,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication; //Import in
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import prova.progettuale.oop.manueldinucci.controllers.DatiRicController;
 
 @SpringBootApplication //Commento iniziale
 public class ManuelDiNucciApplication {
@@ -35,10 +30,29 @@ public class ManuelDiNucciApplication {
 		//DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
+		
+		GetCSV getcsv = new GetCSV(url);
+		try {
+			String nomeFile = getcsv.analizzaUrl();
+			ParsingCSV par = new ParsingCSV(nomeFile);
+			String Elenco = par.parseCsv();
+			System.out.println(nomeFile + ": ");
+			System.out.println(Elenco);
+		} catch (MalformedURLException e) {
+		System.out.println("Errore! URL errato!");
+		e.printStackTrace();
+		} catch (IOException | NumberFormatException | ParseException e) {
+			System.out.println("Errore analisi url");
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Errore analisi url");
+			e.printStackTrace();
+		}
+		
 		/*if(args.length == 1)
 			url = args[0]; */  //STAVA AL JSON PARSE DI MANCINI
 
-		try {
+/*		try {
 			URLConnection openConnection = new URL(url).openConnection();
 			openConnection.addRequestProperty("User-Agent",
 					"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0");
@@ -84,11 +98,11 @@ public class ManuelDiNucciApplication {
 	public static void download(String url, String fileName) throws Exception {
 		try (InputStream in = URI.create(url).toURL().openStream()){
 			Files.copy(in, Paths.get(fileName));
-		}
+		} */
 
 		//CSV CREATO
 
-		//PARSE CSV
+		/*
 		final String PUNTOVIRGOLA = ";"; //DIVENTA BLU NELLA CLASSE !!AGGIUNGI STATIC!!
 		List<List<String>> records = new ArrayList<>();
 		ArrayList<Ricetta> v = new ArrayList<Ricetta>();
@@ -96,8 +110,8 @@ public class ManuelDiNucciApplication {
 		try (BufferedReader br = new BufferedReader(new FileReader("dataset_ricette.csv"))){
 			String riga;
 			//SALVA I DATI DELLA PRIMA RIGA A PARTE PER FUTURI SourceField (0,1,2)
-			String[] rigaIniziale = br.readLine().split(PUNTOVIRGOLA); 
-			System.out.println(rigaIniziale[1]);
+			String[] metaData = br.readLine().split(PUNTOVIRGOLA); 
+			//System.out.println(metaData[1]);
 			while ((riga = br.readLine()) != null) {
 				String[] valori = riga.split(PUNTOVIRGOLA);
 				//System.out.println(valori.length);
@@ -118,7 +132,7 @@ public class ManuelDiNucciApplication {
 		}
 	
     	final String dati = v.toString();
-    	
+    	*/
 		/*@RestController 
 		class DatiRicController{
 			@RequestMapping("/")
