@@ -20,6 +20,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication; //Import in
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import prova.progettuale.oop.manueldinucci.domain.Ricetta;
+
 
 @SpringBootApplication //Commento iniziale
 public class ManuelDiNucciApplication {
@@ -41,7 +43,7 @@ public class ManuelDiNucciApplication {
 			//System.out.println(elenco.get(0).getBranca());
 		} catch (MalformedURLException e) {
 		System.out.println("Errore! URL errato!");
-		e.printStackTrace();
+			e.printStackTrace();
 		} catch (IOException | NumberFormatException | ParseException e) {
 			System.out.println("Errore analisi url");
 			e.printStackTrace();

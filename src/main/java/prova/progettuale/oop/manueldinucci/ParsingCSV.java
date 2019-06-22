@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import prova.progettuale.oop.manueldinucci.domain.Ricetta;
+
 public class ParsingCSV {
 	private String nomeFile;
 	private String riga;

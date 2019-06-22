@@ -6,6 +6,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import prova.progettuale.oop.manueldinucci.domain.Ricetta;
+
 //@RestController
 //public class DatiRicController {
 	//@RequestMapping("/")
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DataController {
 	public static final String BASE_URL = "/metadata";
 	@GetMapping
+	//CHIAMO LE CLASSI
 	ArrayList<Ricetta> ottlis(){
 		Ricetta s =  new Ricetta(1998, "O", 126);
 		ArrayList<Ricetta> v = new ArrayList<Ricetta>();

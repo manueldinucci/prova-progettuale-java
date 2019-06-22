@@ -1,4 +1,4 @@
-package prova.progettuale.oop.manueldinucci;
+package prova.progettuale.oop.manueldinucci.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
