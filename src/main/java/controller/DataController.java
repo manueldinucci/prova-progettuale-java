@@ -1,12 +1,15 @@
-package prova.progettuale.oop.manueldinucci;
+package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import prova.progettuale.oop.manueldinucci.domain.ArrListRicetta;
 import prova.progettuale.oop.manueldinucci.domain.Ricetta;
+import prova.progettuale.oop.manueldinucci.service.RicettaService;
 
 //@RestController
 //public class DatiRicController {
@@ -22,14 +25,16 @@ import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 @RestController
 @RequestMapping(DataController.BASE_URL)
 public class DataController {
-	public static final String BASE_URL = "/metadata";
-	@GetMapping
-	//CHIAMO LE CLASSI
-	ArrayList<Ricetta> ottlis(){
-		Ricetta s =  new Ricetta(1998, "O", 126);
-		ArrayList<Ricetta> v = new ArrayList<Ricetta>();
-		v.add(s);
-		return v;
+	
+	public static final String BASE_URL = "/data";
+	private final RicettaService ricettaService;
+
+	public DataController(RicettaService ricettaService) {
+		this.ricettaService = ricettaService;
 	}
 	
+	@GetMapping 	
+	List<ArrListRicetta> getTuttiIDati(){
+		return ricettaService.findAll();
+	}
 }

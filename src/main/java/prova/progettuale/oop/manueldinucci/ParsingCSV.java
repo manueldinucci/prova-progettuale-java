@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 
 public class ParsingCSV {
-	private String nomeFile;
+	public String nomeFile;
 	private String riga;
 	private Metadata md;
 	final static String PUNTOVIRGOLA = ";";

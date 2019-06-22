@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 //import java.util.Vector;
+import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,14 +28,15 @@ import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 public class ManuelDiNucciApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
+		
+		SpringApplication.run(ManuelDiNucciApplication.class, args);
 		
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
 		
 		GetCSV getcsv = new GetCSV(url);
 		try {
-			String nomeFile = getcsv.analizzaUrl();
+			String nomeFile = getcsv.analizzaUrl("dataset_ricette.csv");
 			ParsingCSV par = new ParsingCSV(nomeFile);
 			ArrayList<Ricetta> elenco = par.parseCsv();
 			System.out.println(nomeFile + ": ");
@@ -51,7 +53,8 @@ public class ManuelDiNucciApplication {
 			System.out.println("Errore analisi url");
 			e.printStackTrace();
 		}
-		
+
+ 
 		
 		/*if(args.length == 1)
 			url = args[0]; */  //STAVA AL JSON PARSE DI MANCINI

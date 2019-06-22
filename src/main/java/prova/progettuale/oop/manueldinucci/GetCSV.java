@@ -28,9 +28,8 @@ public class GetCSV {
 		System.out.println("Analizzo url -> " + url);
 	}	
 
-	public String analizzaUrl() throws MalformedURLException, 
+	public String analizzaUrl(String nomeFile) throws MalformedURLException, 
 		IOException, ParseException {
-		String nomeFile = "dataset_ricette.csv";
 		String datiCopiati;
 		URLConnection oc = new URL(url).openConnection();
 		oc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; "
