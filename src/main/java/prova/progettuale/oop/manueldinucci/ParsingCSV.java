@@ -21,7 +21,8 @@ public class ParsingCSV {
 		records = new ArrayList<>();
 		v = new ArrayList<Ricetta>();
 	}
-	public String parseCsv() throws FileNotFoundException, IOException {
+	
+	public ArrayList<Ricetta> parseCsv() throws FileNotFoundException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(nomeFile));
 		String[] metaData = br.readLine().split(PUNTOVIRGOLA);
 		setMetadata(metaData[0],metaData[1],metaData[2]);
@@ -33,7 +34,7 @@ public class ParsingCSV {
 					Integer.parseInt(valori2corretto)));
 		}
 		br.close();
-		return v.toString();
+		return v;
 	}
 
 	public void setMetadata(String a, String b, String c) {

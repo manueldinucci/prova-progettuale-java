@@ -27,7 +27,6 @@ public class ManuelDiNucciApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ManuelDiNucciApplication.class, args); //Riga iniziale
 		
-		//DOWNLOAD JSON
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
 		
@@ -35,9 +34,11 @@ public class ManuelDiNucciApplication {
 		try {
 			String nomeFile = getcsv.analizzaUrl();
 			ParsingCSV par = new ParsingCSV(nomeFile);
-			String Elenco = par.parseCsv();
+			ArrayList<Ricetta> elenco = par.parseCsv();
 			System.out.println(nomeFile + ": ");
-			System.out.println(Elenco);
+			System.out.println(elenco);
+			//for (Ricetta r : elenco) {System.out.println(r.getBranca());}
+			//System.out.println(elenco.get(0).getBranca());
 		} catch (MalformedURLException e) {
 		System.out.println("Errore! URL errato!");
 		e.printStackTrace();
@@ -48,6 +49,7 @@ public class ManuelDiNucciApplication {
 			System.out.println("Errore analisi url");
 			e.printStackTrace();
 		}
+		
 		
 		/*if(args.length == 1)
 			url = args[0]; */  //STAVA AL JSON PARSE DI MANCINI
