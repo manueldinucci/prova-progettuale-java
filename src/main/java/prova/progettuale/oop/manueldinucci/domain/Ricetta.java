@@ -1,7 +1,17 @@
 package prova.progettuale.oop.manueldinucci.domain;
 
-public class Ricetta {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import lombok.Data;
+
+@Data
+@Entity
+public class Ricetta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int anno;
 	private String branca;
 	private int qtà;
@@ -12,6 +22,7 @@ public class Ricetta {
 	 * @param branca Branca specialistica
 	 * @param qtà Quantità di ricette emesse 
 	 */
+	
 	public Ricetta(int anno, String branca, int qtà) {
 		this.anno = anno;
 		this.branca = branca;

@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import prova.progettuale.oop.manueldinucci.domain.Metadata;
 import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 
 public class ParsingCSV {
 	public String nomeFile;
 	private String riga;
-	private Metadata md;
 	final static String PUNTOVIRGOLA = ";";
 	List<List<String>> records;
 	ArrayList<Ricetta> v;
@@ -27,8 +27,7 @@ public class ParsingCSV {
 	
 	public ArrayList<Ricetta> parseCsv() throws FileNotFoundException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(nomeFile));
-		String[] metaData = br.readLine().split(PUNTOVIRGOLA);
-		setMetadata(metaData[0],metaData[1],metaData[2]);
+		br.readLine().split(PUNTOVIRGOLA);
 		while ((riga = br.readLine()) != null) {
 			String[] valori = riga.split(PUNTOVIRGOLA);
 			records.add(Arrays.asList(valori));
@@ -39,23 +38,12 @@ public class ParsingCSV {
 		br.close();
 		return v;
 	}
-
-	public void setMetadata(String a, String b, String c) {
-		setMd(new Metadata(a,b,c));
-	}
-
-	/**
-	 * @return the md
-	 */
-	public Metadata getMd() {
-		return md;
-	}
-
-	/**
-	 * @param md the md to set
-	 */
-	public void setMd(Metadata md) {
-		this.md = md;
+	
+	public String[] getPrimaRiga() throws IOException {
+		@SuppressWarnings("resource")
+		BufferedReader br = new BufferedReader(new FileReader(nomeFile));
+		String[] metadato = br.readLine().split(PUNTOVIRGOLA);
+		return metadato;
 	}
 
 	/**
