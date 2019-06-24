@@ -12,6 +12,7 @@ public class Stats {
 	public Stats(String field) {
 		this.field=field;
 	}
+	
 	/**
 	 * @param field
 	 * @param total

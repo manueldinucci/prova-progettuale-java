@@ -10,7 +10,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -25,7 +24,6 @@ public class GetCSV {
 	 */
 	public GetCSV(String url) {
 		this.url=url;
-		System.out.println("Analizzo url -> " + url);
 	}	
 
 	public String analizzaUrl(String nomeFile) throws MalformedURLException, 

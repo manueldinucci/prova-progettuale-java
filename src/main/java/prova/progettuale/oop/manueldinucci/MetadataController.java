@@ -3,13 +3,10 @@ package prova.progettuale.oop.manueldinucci;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import prova.progettuale.oop.manueldinucci.domain.Metadata;
 import prova.progettuale.oop.manueldinucci.service.MetadataService;
 

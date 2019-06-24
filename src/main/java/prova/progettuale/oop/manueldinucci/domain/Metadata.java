@@ -1,7 +1,7 @@
 package prova.progettuale.oop.manueldinucci.domain;
 
 public class Metadata {
-	
+
 	private String sourceField;
 	private String type;
 
@@ -19,13 +19,13 @@ public class Metadata {
 	public String getSourceField() {
 		return sourceField;
 	}
+
 	public void setSourceField(String sourceField) {
 		this.sourceField = sourceField;
 	}
-	
+
 	public String getType () {
 		type = sourceField.getClass().getSimpleName();
 		return type;
 	}
-
 }

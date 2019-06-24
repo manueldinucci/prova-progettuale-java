@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import prova.progettuale.oop.manueldinucci.domain.Metadata;
 import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 
@@ -73,6 +72,7 @@ public class ParsingCSV {
 	}
 	
 	public double media(int anno) throws FileNotFoundException, IOException {
+		@SuppressWarnings("unused")
 		ArrayList<Ricetta> a = new ArrayList<Ricetta>();
 		a = parseCsv();
 		int totale = totale(anno);
