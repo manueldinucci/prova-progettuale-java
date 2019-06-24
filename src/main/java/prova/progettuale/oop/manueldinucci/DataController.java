@@ -42,7 +42,8 @@ public class DataController {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		return data;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} return data;
 	}
 } 

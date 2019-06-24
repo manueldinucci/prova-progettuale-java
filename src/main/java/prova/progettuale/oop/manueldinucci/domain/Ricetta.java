@@ -16,7 +16,7 @@ public class Ricetta {
 	private String branca;
 	private int qtà;
 
-	public Ricetta() {};
+	public Ricetta() {}
 	/**
 	 * @param anno Anno
 	 * @param branca Branca specialistica

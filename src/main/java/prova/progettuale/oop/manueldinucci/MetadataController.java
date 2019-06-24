@@ -2,12 +2,15 @@ package prova.progettuale.oop.manueldinucci;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import prova.progettuale.oop.manueldinucci.domain.Metadata;
 import prova.progettuale.oop.manueldinucci.service.MetadataService;
 
 @RestController
@@ -20,7 +23,17 @@ public class MetadataController {
 		this.metadataService = metadataService;
 	}
 	@GetMapping 	
-	List<Ricetta> a() throws MalformedURLException, IOException, ParseException{
-		return ricettaService.stampa();
+	ArrayList<Metadata> b() {
+		ArrayList<Metadata> meta = new ArrayList<Metadata>();
+		try {
+			meta = metadataService.stampa();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return meta;
 	}
 } 
