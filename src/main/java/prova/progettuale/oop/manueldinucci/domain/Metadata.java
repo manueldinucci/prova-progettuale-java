@@ -6,8 +6,8 @@ public class Metadata {
 	private String type;
 
 	/**
-	 * @param sourceField
-	 * @param type
+	 * @param sourceField Nome campo 
+	 * @param type Tipo restituito
 	 */
 	public Metadata(String sourceField) {
 		this.sourceField = sourceField;

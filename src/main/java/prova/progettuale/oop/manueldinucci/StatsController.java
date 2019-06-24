@@ -20,6 +20,9 @@ public class StatsController {
 		this.ricettaService = ricettaService;
 	}
 	
+	/**
+	 * @return Su richiesta, all'indirizzo localhost:8080/stats, restituisce
+	 */
 	@GetMapping
 	ArrayList<String> a() {
 		ArrayList<String> branche = new ArrayList<String>();

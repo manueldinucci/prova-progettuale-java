@@ -15,7 +15,7 @@ public class ManuelDiNucciApplication {
 
 		String url = "https://www.dati.gov.it/api/3/action"
 				+ "/package_show?id=e2f33c10-303c-4cd6-9a23-e3e8f57caeb8";
-
+		
 		GetCSV getcsv = new GetCSV(url);
 		try {
 			getcsv.analizzaUrl("dataset_ricette.csv");

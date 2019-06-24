@@ -26,6 +26,11 @@ public class GetCSV {
 		this.url=url;
 	}	
 
+	/**
+	 * @param nomeFile Nome da assegnare al file .csv 
+	 * @return Analizza il json della pagina web ed effettua il download del file.csv. 
+	 * Ritorna il nome assegnato al file .csv
+	 */
 	public String analizzaUrl(String nomeFile) throws MalformedURLException, 
 		IOException, ParseException {
 		String datiCopiati;
@@ -52,6 +57,9 @@ public class GetCSV {
 		} return nomeFile;
 	}
 
+	/**
+	 * @return Copia i dati contenuti nella pagina web e li inserisce in un'unica stringa
+	 */
 	public static String copiaDati(InputStream in) throws IOException {
 		String datiCopiati = "";
 		String riga = "";
@@ -62,6 +70,10 @@ public class GetCSV {
 		} return datiCopiati;
 	}
 	
+	/**
+	 * @param url URL da utilizzare per il download
+	 * @param nomeFile Nome da assegnare al file scaricato
+	 */
 	public static void download(String url, String nomeFile) 
 			throws MalformedURLException, IOException {
 		try (InputStream in = URI.create(url).toURL().openStream()){

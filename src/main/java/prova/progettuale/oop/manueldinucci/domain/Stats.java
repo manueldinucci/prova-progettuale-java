@@ -9,19 +9,13 @@ public class Stats {
 	private int min;
 	private double std;
 
-	public Stats(String field) {
-		this.field=field;
-	}
-	
 	/**
-	 * @param field
-	 * @param total
-	 * @param avg
-	 * @param max
-	 * @param min
-	 * @param std
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @param field Nome campo
+	 * @param total Totale
+	 * @param avg Media
+	 * @param max Massimo	
+	 * @param min Minimo
+	 * @param std Deviazione Standard
 	 */
 	public Stats(String field, int total, double avg, int max, int min, double std) {
 		this.field = field;
@@ -51,6 +45,8 @@ public class Stats {
 	public double getAvg() {
 		return avg;
 	}
+	
+	
 
 	public void setAvg(double avg) {
 		this.avg = avg;
@@ -79,5 +75,7 @@ public class Stats {
 	public void setStd(double std) {
 		this.std = std;
 	}
+	
+	
 	
 }

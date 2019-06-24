@@ -17,6 +17,10 @@ public class DataController {
 	public DataController(RicettaService ricettaService) {
 		this.ricettaService = ricettaService;
 	}
+	/**
+	 * @return Su richiesta, all'indirizzo localhost:8080/data restituisce la lista completa delle ricette, suddivise per specialità diagnostica,
+	 *  erogate negli ambulatori lombardi ai soli residenti nel comune di Milano dal 2006 al 2012
+	 */
 	@GetMapping 	
 	ArrayList<Ricetta> a() {
 		ArrayList<Ricetta> data = new ArrayList<Ricetta>();

@@ -15,10 +15,15 @@ import prova.progettuale.oop.manueldinucci.service.MetadataService;
 public class MetadataController {
 	
 	private final MetadataService metadataService;
-	
+
 	public MetadataController(MetadataService metadataService) {
 		this.metadataService = metadataService;
 	}
+	
+	/**
+	 * @return Su richiesta, all'indirizzo localhost:8080/metadata, restituisce i metadati della lista
+	 */
+	
 	@GetMapping 	
 	ArrayList<Metadata> b() {
 		ArrayList<Metadata> meta = new ArrayList<Metadata>();

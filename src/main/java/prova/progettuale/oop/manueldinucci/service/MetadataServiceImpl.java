@@ -11,6 +11,9 @@ import prova.progettuale.oop.manueldinucci.domain.Metadata;
 @Service
 public class MetadataServiceImpl implements MetadataService {
 
+	/**
+	 * @return Metadati
+	 */
 	@Override
 	public ArrayList<Metadata> stampa() throws MalformedURLException, IOException, ParseException {
 		ArrayList<Metadata> m = new ArrayList<Metadata>();
