@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"prova.progettuale.oop.manueldinucci"},{"l":"prova.progettuale.oop.manueldinucci.domain"},{"l":"prova.progettuale.oop.manueldinucci.service"}]
