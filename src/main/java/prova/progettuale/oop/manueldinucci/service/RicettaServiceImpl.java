@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
-import prova.progettuale.oop.manueldinucci.ParsingCSV;
+import prova.progettuale.oop.manueldinucci.CsvParser;
 import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 import prova.progettuale.oop.manueldinucci.domain.Stats;
 
@@ -18,7 +18,7 @@ public class RicettaServiceImpl implements RicettaService {
 	 */
 	@Override
 	public ArrayList<Ricetta> stampa() throws MalformedURLException, IOException, ParseException {
-		ParsingCSV par = new ParsingCSV("dataset_ricette.csv");
+		CsvParser par = new CsvParser("dataset_ricette.csv");
 		ArrayList<Ricetta> lista = par.parseCsv();
 		return lista;
 	}
@@ -43,7 +43,7 @@ public class RicettaServiceImpl implements RicettaService {
 	@Override
 	public ArrayList<Stats> stats(int anno) throws MalformedURLException, IOException, ParseException {
 		ArrayList<Stats> statistiche = new ArrayList<Stats>();
-		ParsingCSV par = new ParsingCSV("dataset_ricette.csv");
+		CsvParser par = new CsvParser("dataset_ricette.csv");
 		String field = "RicetteStatAnno" + anno;
 		int tot = par.totale(anno);
 		double media = par.media(anno);

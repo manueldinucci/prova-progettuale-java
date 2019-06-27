@@ -15,14 +15,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-public class GetCSV {
+public class CsvFinder {
 	
 	private String url;
 
 	/**
 	 * @param url Prende il link da analizzare
 	 */
-	public GetCSV(String url) {
+	public CsvFinder(String url) {
 		this.url=url;
 	}	
 
@@ -79,6 +79,6 @@ public class GetCSV {
 		try (InputStream in = URI.create(url).toURL().openStream()){
 			Files.copy(in, Paths.get(nomeFile));
 			System.out.println("Download file " + nomeFile + " completato!");
-		}
+		}  
 	}
 }	

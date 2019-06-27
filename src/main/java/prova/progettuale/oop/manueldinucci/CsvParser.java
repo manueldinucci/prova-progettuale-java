@@ -11,17 +11,17 @@ import prova.progettuale.oop.manueldinucci.domain.Metadata;
 import prova.progettuale.oop.manueldinucci.domain.Ricetta;
 
 
-public class ParsingCSV {
+public class CsvParser {
 	public String nomeFile;
 	private String riga;
 	final static String PUNTOVIRGOLA = ";";
 	ArrayList<Ricetta> v;
 
 	/**
-	 * Costruttore ParsingCSV
+	 * Costruttore CsvParser
 	 * @param nomeFile Nome del file .csv da parsare.
 	 */
-	public ParsingCSV(String nomeFile) {
+	public CsvParser(String nomeFile) {
 		this.nomeFile=nomeFile;
 		v = new ArrayList<Ricetta>();
 	}
@@ -65,6 +65,18 @@ public class ParsingCSV {
 				m.add(new Metadata(primaRiga[i]));
 			} return m;
 	}
+	
+	/**
+	 * @return numero di branche specialistiche 
+	 */
+	public int numElem (int anno) throws FileNotFoundException, IOException {
+		ArrayList<Ricetta> a = new ArrayList<Ricetta>();
+		a = parseCsv();
+		int e=0;
+		for (int i=0; i<a.size(); i++) {
+			if (a.get(i).getAnno()==anno) e++;
+		} return e;
+	}
 
 	/**
 	 * @param anno Anno dal quale calcolare il totale delle ricette emesse 
@@ -79,18 +91,6 @@ public class ParsingCSV {
 			tot+=r.getQty();
 		}
 		return tot;
-	}
-	
-	/**
-	 * @return numero di branche specialistiche 
-	 */
-	public int numElem (int anno) throws FileNotFoundException, IOException {
-		ArrayList<Ricetta> a = new ArrayList<Ricetta>();
-		a = parseCsv();
-		int e=0;
-		for (int i=0; i<a.size(); i++) {
-			if (a.get(i).getAnno()==anno) e++;
-		} return e;
 	}
 	
 	/**
